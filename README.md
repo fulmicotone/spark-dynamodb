@@ -99,7 +99,7 @@ public class FilmSerializer extends DDBSerializer {
 ```
 
 
-##### _Write Funciton_
+##### _Write Function_
 
 ``` 
 session=SparkSession.builder().master("local").getOrCreate();
