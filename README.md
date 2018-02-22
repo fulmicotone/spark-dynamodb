@@ -1,16 +1,16 @@
-#**Spark AWS Dynamo DB**
-####Library  for read or write Spark Dataset  from/to dynamo db
+# **Spark AWS Dynamo DB**
+#### Library  for read or write Spark Dataset  from/to dynamo db
 
 
 
-#####**How to read a Dataset from DynamoDB**
+#### **How to read a Dataset from DynamoDB**
 
-- Extends DDBSerializer, creating the structType 
+- Extends DDBDeserializer, creating the structType 
 - create The DDBJobConf indicating the dynamo db details
 - Use DatasetDDBReader Function
  
  
- ##### _Film Dynamo Serializer Convert from Dynamo Item to Spark Row_
+ ##### _Film Dynamo Deserializer Convert from Dynamo Item to Spark Row_
 ```
  public class FilmDeserializer extends DDBDeserializer {
  
@@ -29,7 +29,7 @@
 
 
 
-#####_DDBJobConf_
+##### _DDBJobConf_
 
 ``` 
  DDBJobConf ddbconf=DDBJobConf.Builder.newInstance()
@@ -39,18 +39,19 @@
                 .setOutputTableName(outputTableName)
                 .setDdbEndpoint(endpoint)
                 .create();
-}
+
 ```
  
  
- #####_Use read Function_
+ ##### _Use read Function_
  ``` 
  Dataset<Row> dataset= new DatasetDDBReader().read(new FilmDeserializer(),ddbconf,session)
- }
+ 
  ```
 
+------
 
-#####**How to Write a Dataset from DynamoDB**
+#### **How to Write a Dataset from DynamoDB**
 
 - Extends DDBSerializer and create the fieldList indicating the column Name and the 
 the specific type.
@@ -59,7 +60,7 @@ the specific type.
  
 
 
-#####_Film Dynamo Serializer_
+##### _Film Dynamo Serializer_
 
 ``` 
 
@@ -84,7 +85,7 @@ public class FilmSerializer extends DDBSerializer {
 ```
 
 
-#####_DDBJobConf_
+##### _DDBJobConf_
 ``` 
 
  DDBJobConf ddbconf=DDBJobConf.Builder.newInstance()
@@ -95,11 +96,11 @@ public class FilmSerializer extends DDBSerializer {
                 .setDdbEndpoint(endpoint)
                 
                 .create();
-}
+
 ```
 
 
-#####_Write Funciton_
+##### _Write Function_
 
 ``` 
 session=SparkSession.builder().master("local").getOrCreate();
@@ -107,10 +108,9 @@ session=SparkSession.builder().master("local").getOrCreate();
 inputDataset=session.read.option("header","true").csv("./film.csv);
 
  new DatasetDDBWriter().write(ddbserializer,ddbconf,new FilmSerializer());
-}
+
 
 ```
-
 
 
 
