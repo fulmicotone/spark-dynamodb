@@ -1,9 +1,9 @@
-#**Spark AWS Dynamo DB**
-####Library  for read or write Spark Dataset  from/to dynamo db
+# **Spark AWS Dynamo DB**
+#### Library  for read or write Spark Dataset  from/to dynamo db
 
 
 
-#####**How to read a Dataset from DynamoDB**
+##### **How to read a Dataset from DynamoDB**
 
 - Extends DDBSerializer, creating the structType 
 - create The DDBJobConf indicating the dynamo db details
@@ -29,7 +29,7 @@
 
 
 
-#####_DDBJobConf_
+##### _DDBJobConf_
 
 ``` 
  DDBJobConf ddbconf=DDBJobConf.Builder.newInstance()
@@ -43,14 +43,14 @@
 ```
  
  
- #####_Use read Function_
+ ##### _Use read Function_
  ``` 
  Dataset<Row> dataset= new DatasetDDBReader().read(new FilmDeserializer(),ddbconf,session)
  }
  ```
 
 
-#####**How to Write a Dataset from DynamoDB**
+##### **How to Write a Dataset from DynamoDB**
 
 - Extends DDBSerializer and create the fieldList indicating the column Name and the 
 the specific type.
@@ -59,7 +59,7 @@ the specific type.
  
 
 
-#####_Film Dynamo Serializer_
+##### _Film Dynamo Serializer_
 
 ``` 
 
@@ -84,7 +84,7 @@ public class FilmSerializer extends DDBSerializer {
 ```
 
 
-#####_DDBJobConf_
+##### _DDBJobConf_
 ``` 
 
  DDBJobConf ddbconf=DDBJobConf.Builder.newInstance()
@@ -99,7 +99,7 @@ public class FilmSerializer extends DDBSerializer {
 ```
 
 
-#####_Write Funciton_
+##### _Write Funciton_
 
 ``` 
 session=SparkSession.builder().master("local").getOrCreate();
