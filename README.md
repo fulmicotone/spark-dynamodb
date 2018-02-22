@@ -3,14 +3,14 @@
 
 
 
-##### **How to read a Dataset from DynamoDB**
+#### **How to read a Dataset from DynamoDB**
 
-- Extends DDBSerializer, creating the structType 
+- Extends DDBDeserializer, creating the structType 
 - create The DDBJobConf indicating the dynamo db details
 - Use DatasetDDBReader Function
  
  
- ##### _Film Dynamo Serializer Convert from Dynamo Item to Spark Row_
+ ##### _Film Dynamo Deserializer Convert from Dynamo Item to Spark Row_
 ```
  public class FilmDeserializer extends DDBDeserializer {
  
@@ -49,8 +49,9 @@
  
  ```
 
+------
 
-##### **How to Write a Dataset from DynamoDB**
+#### **How to Write a Dataset from DynamoDB**
 
 - Extends DDBSerializer and create the fieldList indicating the column Name and the 
 the specific type.
@@ -110,7 +111,6 @@ inputDataset=session.read.option("header","true").csv("./film.csv);
 
 
 ```
-
 
 
 
