@@ -39,14 +39,14 @@
                 .setOutputTableName(outputTableName)
                 .setDdbEndpoint(endpoint)
                 .create();
-}
+
 ```
  
  
  ##### _Use read Function_
  ``` 
  Dataset<Row> dataset= new DatasetDDBReader().read(new FilmDeserializer(),ddbconf,session)
- }
+ 
  ```
 
 
@@ -95,7 +95,7 @@ public class FilmSerializer extends DDBSerializer {
                 .setDdbEndpoint(endpoint)
                 
                 .create();
-}
+
 ```
 
 
@@ -107,7 +107,7 @@ session=SparkSession.builder().master("local").getOrCreate();
 inputDataset=session.read.option("header","true").csv("./film.csv);
 
  new DatasetDDBWriter().write(ddbserializer,ddbconf,new FilmSerializer());
-}
+
 
 ```
 
