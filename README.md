@@ -107,7 +107,7 @@ session=SparkSession.builder().master("local").getOrCreate();
 
 inputDataset=session.read.option("header","true").csv("./film.csv);
 
- new DatasetDDBWriter().write(ddbserializer,ddbconf,new FilmSerializer());
+ new DatasetDDBWriter().write(new FilmSerializer(),ddbconf,session);
 
 
 ```
